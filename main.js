@@ -3,11 +3,7 @@ const fs = require("fs");
 
 // console.log(http.STATUS_CODES);
 
-let count = {
-    home: 0,
-    product: 0,
-    contact: 0
-}
+let count = 0;
 
 const server = http.createServer((req, res) => {
     console.log("REQUEST INCOMING", req.url);
@@ -15,10 +11,10 @@ const server = http.createServer((req, res) => {
     let display; 
     switch (req.url) {
         case "/":
-            count.home += 1;
+            count += 1;
             path += "index.html";
             res.setHeader("Content-Type", "text/html");
-            display = '<script>const count = document.querySelector(".count");count.innerText = "Website visited: '+ count.home + ' times";</script>';
+            display = '<script>const count = document.querySelector(".count");count.innerText = "Website visited: '+ count + ' times";</script>';
             break; 
         case "/style.css":
             path += "style.css";
@@ -26,16 +22,16 @@ const server = http.createServer((req, res) => {
             display = '';
             break;
         case "/product": 
-            count.product += 1;
+            count += 1;
             path += "product.html";
             res.setHeader("Content-Type", "text/html");
-            display = '<script>const count = document.querySelector(".count");count.innerText = "Website visited: '+ count.product + ' times";</script>';
+            display = '<script>const count = document.querySelector(".count");count.innerText = "Website visited: '+ count + ' times";</script>';
             break;
         case "/contact": 
-            count.contact += 1;
+            count += 1;
             path += "contact.html";
             res.setHeader("Content-Type", "text/html");
-            display = '<script>const count = document.querySelector(".count");count.innerText = "Website visited: '+ count.contact + ' times";</script>';
+            display = '<script>const count = document.querySelector(".count");count.innerText = "Website visited: '+ count + ' times";</script>';
             break;
         default:
             break;
